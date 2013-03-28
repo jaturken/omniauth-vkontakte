@@ -81,8 +81,7 @@ module OmniAuth
             end
           end
           params[:scope] ||= DEFAULT_SCOPE
-          params[:redirect_uri] = "http://likeberi.net"
-           # if Rails.env.production?
+          params[:redirect_uri] = "http://likeberi.net" if Rails.env.production?
         end
       end
 
