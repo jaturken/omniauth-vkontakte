@@ -73,7 +73,7 @@ module OmniAuth
       def authorize_params
         super.tap do |params|
           # just a copypaste from omniauth-facebook
-          %w[display state scope].each do |v|
+          %w[display state scope redirect_uri].each do |v|
             if request.params[v]
               params[v.to_sym] = request.params[v]
               # to support omniauth-oauth2's auto csrf protection
@@ -81,7 +81,7 @@ module OmniAuth
             end
           end
           params[:scope] ||= DEFAULT_SCOPE
-          params[:redirect_uri] = "http://likeberi.net/users/auth/vkontakte/callback" if Rails.env.production?
+          params[:redirect_uri] ||= "http://likeberi.net/users/auth/vkontakte/callback" if Rails.env.production?
         end
       end
 
